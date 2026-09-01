@@ -1,0 +1,109 @@
+{
+  "task": "013-playwright-e2e",
+  "skill": "playwright-skill",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 201.5,
+      "exit": 0,
+      "usage": {
+        "input_tokens": 17970,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 100672,
+        "output_tokens": 13076,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "FAIL",
+        "reason": "1 项过程断言失败",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 4,
+        "tools": [
+          "Bash",
+          "Glob",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 1,
+        "n_warn": 1,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.spec\\.ts$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "should_use",
+            "target": "Read file_path=/reference/",
+            "verdict": "WARN",
+            "detail": "条件步骤未观测到(仅提醒,不算失败)"
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "FAIL",
+            "detail": "违规调用: ['Bash']"
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "login.e2e.spec.ts"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "@playwright/test'|@playwright/test\"",
+            "verdict": "PASS",
+            "detail": "命中: ['login.e2e.spec.ts']"
+          },
+          {
+            "check": "contains",
+            "target": "test\\(",
+            "verdict": "PASS",
+            "detail": "命中: ['login.e2e.spec.ts']"
+          },
+          {
+            "check": "contains",
+            "target": "page\\.",
+            "verdict": "PASS",
+            "detail": "命中: ['login.e2e.spec.ts']"
+          },
+          {
+            "check": "contains",
+            "target": "expect\\(",
+            "verdict": "PASS",
+            "detail": "命中: ['login.e2e.spec.ts']"
+          },
+          {
+            "check": "contains",
+            "target": "locator\\(|getByRole|getByLabel|getByPlaceholder",
+            "verdict": "PASS",
+            "detail": "命中: ['login.e2e.spec.ts']"
+          }
+        ]
+      },
+      "verdict": "FAIL"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-193540"
+}

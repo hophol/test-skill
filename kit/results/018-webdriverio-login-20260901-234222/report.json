@@ -1,0 +1,91 @@
+{
+  "task": "018-webdriverio-login",
+  "skill": "webdriverio-skill",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 162.9,
+      "exit": 0,
+      "usage": {
+        "input_tokens": 37608,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 108096,
+        "output_tokens": 10166,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "FAIL",
+        "reason": "1 项过程断言失败",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 4,
+        "tools": [
+          "Bash",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 1,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.spec\\.js$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "FAIL",
+            "detail": "违规调用: ['Bash']"
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "login.spec.js"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "describe\\(",
+            "verdict": "PASS",
+            "detail": "命中: ['login.spec.js']"
+          },
+          {
+            "check": "contains",
+            "target": "it\\(",
+            "verdict": "PASS",
+            "detail": "命中: ['login.spec.js']"
+          },
+          {
+            "check": "contains",
+            "target": "\\$\\(|browser\\.",
+            "verdict": "PASS",
+            "detail": "命中: ['login.spec.js']"
+          }
+        ]
+      },
+      "verdict": "FAIL"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-234222"
+}

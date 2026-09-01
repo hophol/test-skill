@@ -1,0 +1,6 @@
+{
+  "id": "015-semgrep-rules",
+  "skill": "semgrep-rule-creator",
+  "prompt": "请写一组 Semgrep 自定义规则 rules.yaml，检测三类前端隐患：1) innerHTML 直接赋值（含拼接变量）；2) eval/new Function 执行用户可控输入；3) 硬编码 API 密钥（sk- 开头字符串）。每条规则要有 id、message、severity，并附正反例说明（注释即可）。不执行 semgrep、不安装任何东西，只输出规则文件。",
+  "setup": { "copy": [] }
+}

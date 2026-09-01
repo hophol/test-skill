@@ -1,0 +1,17 @@
+# react-email(外部 Resend)入池契约 —— 双产物:组件 + 可投递 HTML
+process:
+  must_use:
+    - { tool: Write, args: { file_path: '\.tsx$' } }    # react-email 组件模板
+    - { tool: Write, args: { file_path: '\.html$' } }   # 渲染产物(邮件客户端兼容 HTML)
+  should_use:
+    - { tool: Read,  args: { file_path: 'references[/\\]' } }  # 组件/样式参考
+  forbidden: [Bash]
+output:
+  naming: task
+  artifacts: ["*.tsx", "*.html"]
+  contains:
+    - '@react-email/components|from "react-email"'  # 组件库引用
+    - '<Html|<html'                                  # 邮件文档骨架
+    - 'width="600"|max-width:\s*600px'               # 邮件最佳实践:600px 版心(STYLING 参考)
+invariants: []
+metamorphic: []

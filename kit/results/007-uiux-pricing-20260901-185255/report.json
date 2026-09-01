@@ -1,0 +1,84 @@
+{
+  "task": "007-uiux-pricing",
+  "skill": "ui-ux-pro-max",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 68.4,
+      "exit": 1,
+      "usage": {
+        "input_tokens": 23634,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 354112,
+        "output_tokens": 2917,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "FAIL",
+        "reason": "2 项过程断言失败",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 16,
+        "tools": [
+          "Bash",
+          "Glob",
+          "Grep",
+          "Read",
+          "Skill"
+        ],
+        "n_fail": 2,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.html$/",
+            "verdict": "FAIL",
+            "detail": "转录中无「工具名+参数正则」均匹配的调用"
+          },
+          {
+            "check": "should_use",
+            "target": "Read file_path=/data[/\\\\]/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "FAIL",
+            "detail": "违规调用: ['Bash', 'Bash', 'Bash']"
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "FAIL",
+        "n_fail": 1,
+        "n_warn": 0,
+        "artifacts": [],
+        "findings": [
+          {
+            "check": "artifact",
+            "target": "pricing*.html",
+            "verdict": "FAIL",
+            "detail": "工作区未找到任何产物"
+          }
+        ]
+      },
+      "verdict": "FAIL"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-185255"
+}

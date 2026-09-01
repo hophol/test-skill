@@ -1,0 +1,14 @@
+# phpunit-skill(外部 LambdaTest/agent-skills@main)入池契约 —— 批量入池:静态已验(lint+security),golden 任务排队中
+process:
+  must_use:
+    - { tool: Write, args: { file_path: '\.php$' } }
+  forbidden: [Bash]
+output:
+  naming: task
+  artifacts: ["*Test.php"]
+  contains:
+    - 'public function test'
+    - 'assertEquals|assert'
+    - 'class '
+invariants: []
+metamorphic: []

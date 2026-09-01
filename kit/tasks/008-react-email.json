@@ -1,0 +1,6 @@
+{
+  "id": "008-react-email",
+  "skill": "react-email",
+  "prompt": "请用 react-email 组件方式写一封「产品更新通知」邮件模板 update-notice.tsx（用 @react-email/components），并附一份可直接投递的 HTML 版本 update-notice.html（600px 版心、表格布局、内联样式，兼容主流邮件客户端）。不要安装依赖、不要起服务。",
+  "setup": { "copy": [] }
+}

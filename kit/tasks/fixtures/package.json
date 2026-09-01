@@ -1,0 +1,11 @@
+{
+  "name": "mall-web",
+  "version": "2.4.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "zustand": "^4.4.0",
+    "antd": "^5.12.0"
+  }
+}

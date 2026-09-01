@@ -1,0 +1,11 @@
+{
+  "id": "001-login-test-design",
+  "skill": "fe-test-design",
+  "prompt": "请为登录功能做前端测试设计：需求说明见 fe-req-login.md，技术方案见 fe-dev-login.md。",
+  "setup": {
+    "copy": [
+      ["tasks/fixtures/fe-req-login.md", "."],
+      ["tasks/fixtures/fe-dev-login.md", "."]
+    ]
+  }
+}

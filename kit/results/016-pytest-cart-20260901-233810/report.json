@@ -1,0 +1,91 @@
+{
+  "task": "016-pytest-cart",
+  "skill": "pytest-skill",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 192.9,
+      "exit": 0,
+      "usage": {
+        "input_tokens": 28485,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 99200,
+        "output_tokens": 8300,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "PASS",
+        "reason": "过程断言全过",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 4,
+        "tools": [
+          "Edit",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 0,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.py$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "test_cart.py"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "def test_",
+            "verdict": "PASS",
+            "detail": "命中: ['test_cart.py']"
+          },
+          {
+            "check": "contains",
+            "target": "assert ",
+            "verdict": "PASS",
+            "detail": "命中: ['test_cart.py']"
+          },
+          {
+            "check": "contains",
+            "target": "import pytest|from pytest|pytest\\.",
+            "verdict": "PASS",
+            "detail": "命中: ['test_cart.py']"
+          }
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-233810"
+}

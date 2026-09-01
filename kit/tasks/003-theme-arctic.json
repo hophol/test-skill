@@ -1,0 +1,10 @@
+{
+  "id": "003-theme-arctic",
+  "skill": "theme-factory",
+  "prompt": "主题已选定：Arctic Frost（无需再展示 showcase 或询问）。请读取技能目录 themes/arctic-frost.md 中的主题定义，把 product-copy.md 这份产品文案做成一份完整应用该主题（色板与字体全部用上）的 HTML 版式页面，输出为 themed-spruce.html。",
+  "setup": {
+    "copy": [
+      ["tasks/fixtures/product-copy.md", "."]
+    ]
+  }
+}

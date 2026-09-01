@@ -1,0 +1,19 @@
+# playwright-skill(外部 TestMu AI)入池契约 —— E2E 测试生成(不执行)
+# 注:该 skill 自带 scaffold/validate 脚本与云集成,无头任务只取其「生成测试代码」面
+process:
+  must_use:
+    - { tool: Write, args: { file_path: '\.spec\.ts$' } }
+  should_use:
+    - { tool: Read,  args: { file_path: 'reference' } }     # 模式参考文档
+  forbidden: [Bash]          # 不 scaffold、不装依赖、不跑浏览器
+output:
+  naming: task
+  artifacts: ["*.spec.ts"]
+  contains:
+    - "@playwright/test'|@playwright/test\""
+    - 'test\('
+    - 'page\.'
+    - 'expect\('
+    - 'locator\(|getByRole|getByLabel|getByPlaceholder'
+invariants: []
+metamorphic: []

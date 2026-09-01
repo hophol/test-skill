@@ -1,0 +1,19 @@
+# cucumber-skill(外部 TestMu AI)入池契约 —— BDD 双产物:feature + steps
+process:
+  must_use:
+    - { tool: Read,  args: { file_path: 'fe-req|需求' } }         # 读需求(复用池内 fixture)
+    - { tool: Write, args: { file_path: '\.feature$' } }          # Gherkin feature
+    - { tool: Write, args: { file_path: 'steps[^/\\]*\.js$' } }   # step definitions
+  ordered: [[Read, Write]]
+  forbidden: [Bash]
+output:
+  naming: task
+  artifacts: ["**/*.feature", "**/step*/**/steps*.js", "**/steps*.js"]   # Cucumber 惯例放 features/ 子目录,契约递归匹配(010 实测教训:根目录 glob 造成假阴性)
+  contains:
+    - 'Feature:'          # Gherkin 骨架
+    - 'Scenario:'
+    - 'Given\('           # step 定义绑定(cucumber 表达式)
+    - 'When\('
+    - 'Then\('
+invariants: []
+metamorphic: []

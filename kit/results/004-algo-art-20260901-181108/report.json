@@ -1,0 +1,112 @@
+{
+  "task": "004-algo-art",
+  "skill": "algorithmic-art",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 522.3,
+      "exit": 0,
+      "usage": {
+        "input_tokens": 53864,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 583488,
+        "output_tokens": 40302,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "FAIL",
+        "reason": "1 项过程断言失败",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 12,
+        "tools": [
+          "Bash",
+          "Grep",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 1,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Read file_path=/templates[/\\\\]/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.html$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.js$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.md$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "ordered",
+            "target": "Read -> Write",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "FAIL",
+            "detail": "违规调用: ['Bash', 'Bash', 'Bash']"
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "generator.js",
+          "silk-harmonics.md",
+          "viewer.html"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "p5\\.min\\.js|p5\\.js",
+            "verdict": "PASS",
+            "detail": "命中: ['generator.js', 'silk-harmonics.md', 'viewer.html']"
+          },
+          {
+            "check": "contains",
+            "target": "randomSeed|noiseSeed",
+            "verdict": "PASS",
+            "detail": "命中: ['generator.js', 'viewer.html']"
+          }
+        ]
+      },
+      "verdict": "FAIL"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-181108"
+}

@@ -1,0 +1,75 @@
+{
+  "task": "019-robot-login",
+  "skill": "robot-framework-skill",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 481.5,
+      "exit": 1,
+      "usage": {
+        "input_tokens": 3663,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 40704,
+        "output_tokens": 526,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "UNKNOWN",
+        "reason": "会话因 API 错误(429/限额/网络)未执行 —— 基础设施事故,非 C1",
+        "skill_invoked": true,
+        "evidence_incomplete": true,
+        "n_tool_calls": 2,
+        "tools": [
+          "Read",
+          "Skill"
+        ],
+        "n_fail": 1,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.robot$/",
+            "verdict": "FAIL",
+            "detail": "转录中无「工具名+参数正则」均匹配的调用"
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "FAIL",
+        "n_fail": 1,
+        "n_warn": 0,
+        "artifacts": [],
+        "findings": [
+          {
+            "check": "artifact",
+            "target": "*.robot",
+            "verdict": "FAIL",
+            "detail": "工作区未找到任何产物"
+          }
+        ]
+      },
+      "verdict": "FAIL"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-234505"
+}

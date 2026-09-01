@@ -1,0 +1,17 @@
+# algorithmic-art(外部 anthropics/skills)入池契约 —— 多产物三件套
+process:
+  must_use:
+    - { tool: Read,  args: { file_path: 'templates[/\\]' } }   # SKILL 两步流程:必须参照模板
+    - { tool: Write, args: { file_path: '\.html$' } }          # 交互 viewer
+    - { tool: Write, args: { file_path: '\.js$' } }            # 生成算法
+    - { tool: Write, args: { file_path: '\.md$' } }            # 算法哲学文档
+  ordered: [[Read, Write]]
+  forbidden: [Bash]            # 无头模式不执行代码,产物给用户自己打开
+output:
+  naming: task                 # SKILL 只承诺文件类型不承诺命名
+  artifacts: ["*.html", "*.js", "*.md"]   # SKILL 明示的三件套,缺一即 FAIL
+  contains:
+    - 'p5\.min\.js|p5\.js'     # viewer 必须引 p5 运行时
+    - 'randomSeed|noiseSeed'   # 算法必须用种子随机(SKILL 核心承诺:可复现)
+invariants: []
+metamorphic: []

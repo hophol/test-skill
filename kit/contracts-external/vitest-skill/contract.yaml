@@ -1,0 +1,17 @@
+# vitest-skill(外部 TestMu AI)入池契约 —— 单元测试代码生成
+process:
+  must_use:
+    - { tool: Read,  args: { file_path: 'discount' } }            # 读被测模块
+    - { tool: Write, args: { file_path: '\.test\.ts$' } }         # 测试产物
+  ordered: [[Read, Write]]
+  forbidden: [Bash]        # 无头只生成不执行(与 webapp-testing 类 skill 的定位差异要记录)
+output:
+  naming: task
+  artifacts: ["*.test.ts"]
+  contains:
+    - "from 'vitest'|from \"vitest\""
+    - 'describe\('
+    - 'it\(|test\('
+    - 'expect\('
+invariants: []
+metamorphic: []

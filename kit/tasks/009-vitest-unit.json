@@ -1,0 +1,8 @@
+{
+  "id": "009-vitest-unit",
+  "skill": "vitest-skill",
+  "prompt": "请为 discount.ts 写 Vitest 单元测试 discount.test.ts：覆盖 lineTotal 的 VIP 折扣与非法入参（价格非正、数量非整数/非正），以及 payable 的满减叠加与边界（恰好 300、VIP 折后跨阈值）。只生成测试文件，不安装依赖、不执行。",
+  "setup": {
+    "copy": [["tasks/fixtures/discount.ts", "."]]
+  }
+}

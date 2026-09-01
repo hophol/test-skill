@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>结算页</title></head>
+<body>
+  <h1>结算</h1>
+
+  <!-- 靶点1: 图标按钮无可访问名称(规则1) -->
+  <button><svg width="16" height="16"><path d="M0 0h16v16H0z"/></svg></button>
+
+  <!-- 靶点2: div 当按钮,无键盘支持(规则2) -->
+  <div onclick="submitOrder()">提交订单</div>
+
+  <form>
+    <!-- 靶点3: 输入框无标签(规则1), 错误提示未关联(规则5) -->
+    <input id="email" type="text" value="tom#example">
+    <span>邮箱格式不正确</span>
+    <input id="card" type="text" placeholder="卡号">
+  </form>
+
+  <!-- 靶点4: 图片无 alt(规则8) -->
+  <img src="product.png" width="120" height="120">
+
+  <!-- 靶点5: 无意义链接文本(规则1) -->
+  <a href="/policy">点这里</a>
+</body>
+</html>

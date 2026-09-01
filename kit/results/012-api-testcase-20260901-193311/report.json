@@ -1,0 +1,109 @@
+{
+  "task": "012-api-testcase",
+  "skill": "api-to-testcase-generator",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 148.7,
+      "exit": 0,
+      "usage": {
+        "input_tokens": 19614,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 144320,
+        "output_tokens": 10375,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "PASS",
+        "reason": "过程断言全过",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 7,
+        "tools": [
+          "Glob",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 0,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Read file_path=/openapi/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "must_use",
+            "target": "Write file_path=/api[_-]?tests[^/\\\\]*\\.py$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "ordered",
+            "target": "Read -> Write",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "api_tests.py"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "def test_",
+            "verdict": "PASS",
+            "detail": "命中: ['api_tests.py']"
+          },
+          {
+            "check": "contains",
+            "target": "status_code",
+            "verdict": "PASS",
+            "detail": "命中: ['api_tests.py']"
+          },
+          {
+            "check": "contains",
+            "target": "assert ",
+            "verdict": "PASS",
+            "detail": "命中: ['api_tests.py']"
+          },
+          {
+            "check": "contains",
+            "target": "requests\\.|httpx\\.|pytest\\.",
+            "verdict": "PASS",
+            "detail": "命中: ['api_tests.py']"
+          }
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-193311"
+}

@@ -1,0 +1,44 @@
+{
+  "score": {
+    "test": "results/009-vitest-unit-20260901-192405/run-1/ws/discount.test.ts",
+    "clean_green": false,
+    "n_bugs": 3,
+    "killed": [
+      "BUG-1 满减不叠加",
+      "BUG-2 VIP折扣反了",
+      "BUG-3 非法入参放行"
+    ],
+    "survived": [],
+    "kill_rate": 1.0
+  },
+  "rows": [
+    {
+      "label": "clean",
+      "exit": 134,
+      "failed_tests": null,
+      "tail": " 2: 00007FF727A0685C node::InitializeOncePerProcess+3100\n 3: 00007FF727A06BBD node::Start+445\n 4: 00007FF727AC1552 node::AsyncResource::CallbackScope::CallbackScope+610\n 5: 00007FF727CD14F4 node::AsyncResource::CallbackScope::CallbackScope+2163204\n 6: 00007FFC64467614 BaseThreadInitThunk+20\n 7: 00007FFC656626A1 RtlUserThreadStart+33",
+      "duration_s": 0.2
+    },
+    {
+      "label": "BUG-1 满减不叠加",
+      "exit": 134,
+      "failed_tests": null,
+      "tail": " 2: 00007FF727A0685C node::InitializeOncePerProcess+3100\n 3: 00007FF727A06BBD node::Start+445\n 4: 00007FF727AC1552 node::AsyncResource::CallbackScope::CallbackScope+610\n 5: 00007FF727CD14F4 node::AsyncResource::CallbackScope::CallbackScope+2163204\n 6: 00007FFC64467614 BaseThreadInitThunk+20\n 7: 00007FFC656626A1 RtlUserThreadStart+33",
+      "duration_s": 0.1
+    },
+    {
+      "label": "BUG-2 VIP折扣反了",
+      "exit": 134,
+      "failed_tests": null,
+      "tail": " 2: 00007FF727A0685C node::InitializeOncePerProcess+3100\n 3: 00007FF727A06BBD node::Start+445\n 4: 00007FF727AC1552 node::AsyncResource::CallbackScope::CallbackScope+610\n 5: 00007FF727CD14F4 node::AsyncResource::CallbackScope::CallbackScope+2163204\n 6: 00007FFC64467614 BaseThreadInitThunk+20\n 7: 00007FFC656626A1 RtlUserThreadStart+33",
+      "duration_s": 0.1
+    },
+    {
+      "label": "BUG-3 非法入参放行",
+      "exit": 134,
+      "failed_tests": null,
+      "tail": " 2: 00007FF727A0685C node::InitializeOncePerProcess+3100\n 3: 00007FF727A06BBD node::Start+445\n 4: 00007FF727AC1552 node::AsyncResource::CallbackScope::CallbackScope+610\n 5: 00007FF727CD14F4 node::AsyncResource::CallbackScope::CallbackScope+2163204\n 6: 00007FFC64467614 BaseThreadInitThunk+20\n 7: 00007FFC656626A1 RtlUserThreadStart+33",
+      "duration_s": 0.1
+    }
+  ]
+}

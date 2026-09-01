@@ -1,0 +1,20 @@
+# ── 私有/生成物 ──
+.staging/
+.work/
+kit/exec-env/node_modules/
+kit/exec-env/fault-run/
+
+# 会话转录与运行工作区(大且含会话数据):results 只保留 json 报告
+kit/results/**/ws/
+kit/results/**/transcript.jsonl
+kit/results/**/stderr.txt
+
+# ── 他人 skill 不上传(项目约定):池内只保留自建三连,外部 skill 按 PROVENANCE.md 自取 ──
+kit/skills-sample/.claude/skills/*
+!kit/skills-sample/.claude/skills/fe-req-analysis/
+!kit/skills-sample/.claude/skills/fe-dev-design/
+!kit/skills-sample/.claude/skills/fe-test-design/
+
+# 验证集野生样本(他人 skill 的副本,用于悬空引用检测):不入库,见 validation/PROVENANCE.md
+kit/validation/anomalies/W1-wild-dangling-scripts/
+kit/validation/anomalies/W2-wild-dangling-references/

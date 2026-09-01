@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Meridian Todo API
+  version: 1.0.0
+paths:
+  /api/todos:
+    get:
+      summary: 列出待办
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, enum: [open, done] }
+          description: 按状态过滤,缺省返回全部
+        - in: query
+          name: limit
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+      responses:
+        '200':
+          description: 待办列表
+        '400':
+          description: limit 越界(1-100)
+    post:
+      summary: 新建待办
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title]
+              properties:
+                title: { type: string, minLength: 1, maxLength: 120 }
+                due: { type: string, format: date }
+      responses:
+        '201': { description: 创建成功 }
+        '400': { description: title 缺失/超长或格式非法 }
+        '409': { description: 同名待办已存在 }
+  /api/todos/{id}:
+    patch:
+      summary: 更新状态
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string, enum: [open, done] }
+      responses:
+        '200': { description: 更新成功 }
+        '404': { description: 待办不存在 }
+        '422': { description: status 值非法 }

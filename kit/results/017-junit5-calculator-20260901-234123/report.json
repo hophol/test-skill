@@ -1,0 +1,91 @@
+{
+  "task": "017-junit5-calculator",
+  "skill": "junit-5-skill",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 59.1,
+      "exit": 0,
+      "usage": {
+        "input_tokens": 26004,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 93696,
+        "output_tokens": 4908,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "PASS",
+        "reason": "过程断言全过",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 4,
+        "tools": [
+          "Glob",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 0,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.java$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "CalculatorTest.java"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "@Test",
+            "verdict": "PASS",
+            "detail": "命中: ['CalculatorTest.java']"
+          },
+          {
+            "check": "contains",
+            "target": "Assertions\\.",
+            "verdict": "PASS",
+            "detail": "命中: ['CalculatorTest.java']"
+          },
+          {
+            "check": "contains",
+            "target": "org\\.junit\\.jupiter|class ",
+            "verdict": "PASS",
+            "detail": "命中: ['CalculatorTest.java']"
+          }
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-234123"
+}

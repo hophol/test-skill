@@ -1,0 +1,19 @@
+{
+  "score": {
+    "test": "results/011-jest-react-20260901-193203/run-1/ws/Button.test.jsx",
+    "clean_green": false,
+    "n_bugs": 0,
+    "killed": [],
+    "survived": [],
+    "kill_rate": null
+  },
+  "rows": [
+    {
+      "label": "clean",
+      "exit": 1,
+      "failed_tests": null,
+      "tail": "\nTest Suites: 1 failed, 1 total\nTests:       0 total\nSnapshots:   0 total\nTime:        10.99 s\nRan all test suites matching Button.test.jsx.",
+      "duration_s": 13.6
+    }
+  ]
+}

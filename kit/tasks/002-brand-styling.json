@@ -1,0 +1,10 @@
+{
+  "id": "002-brand-styling",
+  "skill": "brand-guidelines",
+  "prompt": "请把 landing.html 这份产品落地页按 Anthropic 品牌规范重新配色与排版（品牌色与字体以技能规范为准），输出为 styled-landing.html。",
+  "setup": {
+    "copy": [
+      ["tasks/fixtures/landing.html", "."]
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "task": "005-angular-counter",
+  "skill": "angular-developer",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 44.4,
+      "exit": 0,
+      "usage": {
+        "input_tokens": 26523,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 70400,
+        "output_tokens": 2132,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "PASS",
+        "reason": "过程断言全过(1 项软提醒)",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 4,
+        "tools": [
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 0,
+        "n_warn": 1,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.ts$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "should_use",
+            "target": "Read file_path=/references[/\\\\]/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "should_use",
+            "target": "Bash command=/ng build|npx/",
+            "verdict": "WARN",
+            "detail": "条件步骤未观测到(仅提醒,不算失败)"
+          },
+          {
+            "check": "forbidden",
+            "target": "",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "counter.component.ts"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "@Component",
+            "verdict": "PASS",
+            "detail": "命中: ['counter.component.ts']"
+          },
+          {
+            "check": "contains",
+            "target": "signal\\(|signals|linkedSignal|input\\(",
+            "verdict": "PASS",
+            "detail": "命中: ['counter.component.ts']"
+          },
+          {
+            "check": "contains",
+            "target": "template:|templateUrl",
+            "verdict": "PASS",
+            "detail": "命中: ['counter.component.ts']"
+          }
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-185027"
+}

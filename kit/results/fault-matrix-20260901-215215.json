@@ -1,0 +1,44 @@
+{
+  "score": {
+    "test": "results/009-vitest-unit-20260901-192405/run-1/ws/discount.test.ts",
+    "clean_green": true,
+    "n_bugs": 3,
+    "killed": [
+      "BUG-1 满减不叠加",
+      "BUG-2 VIP折扣反了",
+      "BUG-3 非法入参放行"
+    ],
+    "survived": [],
+    "kill_rate": 1.0
+  },
+  "rows": [
+    {
+      "label": "clean",
+      "exit": 0,
+      "failed_tests": null,
+      "tail": "\n Test Files  1 passed (1)\n      Tests  21 passed (21)\n   Start at  21:52:11\n   Duration  642ms (transform 29ms, setup 0ms, import 68ms, tests 5ms, environment 0ms)\n",
+      "duration_s": 2.9
+    },
+    {
+      "label": "BUG-1 满减不叠加",
+      "exit": 1,
+      "failed_tests": 1,
+      "tail": "       |                                                                ^\n     76|     // 550 只满一档 → 550 - 40 = 510\n     77|     expect(payable([{ sku: 'A', price: 550, qty: 1 }], false)).toBe(51…\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n",
+      "duration_s": 0.9
+    },
+    {
+      "label": "BUG-2 VIP折扣反了",
+      "exit": 1,
+      "failed_tests": 10,
+      "tail": "       |                                   ^\n     99|   });\n    100|\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯\n",
+      "duration_s": 0.9
+    },
+    {
+      "label": "BUG-3 非法入参放行",
+      "exit": 1,
+      "failed_tests": 3,
+      "tail": "       |                                                                        ^\n     47|         'price must be positive',\n     48|       );\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯\n",
+      "duration_s": 0.9
+    }
+  ]
+}

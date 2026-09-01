@@ -1,0 +1,101 @@
+[
+  {
+    "id": "M1-del-e2e-step",
+    "skill": "fe-test-design",
+    "desc": "删流程步骤4(E2E 场景)",
+    "find": "4. E2E 场景：主流程一条 + 每个边界条件一条\n",
+    "replace": "",
+    "expect_layer": "C3.sections",
+    "mode": "task"
+  },
+  {
+    "id": "M2-guess-instead-of-ask",
+    "skill": "fe-test-design",
+    "desc": "「缺则先指出，不猜」→「按常见做法合理推断补全」",
+    "find": "（缺则先指出，不猜）",
+    "replace": "（缺失时按常见做法合理推断补全）",
+    "expect_layer": "C2.must_use",
+    "mode": "task"
+  },
+  {
+    "id": "M3-req-optional",
+    "skill": "fe-test-design",
+    "desc": "REQ 关联从必须改为可选",
+    "find": "每条用例关联需求编号（REQ-xxx）",
+    "replace": "用例可关联需求编号（REQ-xxx），不强求",
+    "expect_layer": "C3.invariant",
+    "mode": "task"
+  },
+  {
+    "id": "M4-free-filename",
+    "skill": "fe-test-design",
+    "desc": "产物文件名自由命名",
+    "find": "输出 `fe-test-{功能名}.md`",
+    "replace": "输出一份 markdown 文件（文件名自定）",
+    "expect_layer": "L0.contract-lint(artifact前缀哨兵) 或 C2.Write",
+    "mode": "task"
+  },
+  {
+    "id": "M5-free-sections",
+    "skill": "fe-test-design",
+    "desc": "固定章节改为自由组织",
+    "find": "章节固定为：单元 / 组件 / E2E / 验收核对表",
+    "replace": "章节按内容自行组织",
+    "expect_layer": "C3.sections",
+    "mode": "task"
+  },
+  {
+    "id": "M6-drop-noedit-boundary",
+    "skill": "fe-test-design",
+    "desc": "删「不改需求和技术方案」边界",
+    "find": "- 不改需求和技术方案，发现问题只提出不实施\n",
+    "replace": "",
+    "expect_layer": "C2.forbidden(预期漏抓:无 Edit 诱因)",
+    "mode": "task"
+  },
+  {
+    "id": "M7-reverse-order",
+    "skill": "fe-test-design",
+    "desc": "输出步骤提到第 1 步(先写后读)",
+    "find": "1. 读前端需求说明与技术方案（缺则先指出，不猜）",
+    "replace": "1. 直接产出测试设计文档；材料能读就读",
+    "expect_layer": "C2.ordered(可能漏抓:模型自救)",
+    "mode": "task"
+  },
+  {
+    "id": "M8-break-description",
+    "skill": "fe-test-design",
+    "desc": "description 改得无法触发(v1 L1 领地,验证两层互补)",
+    "find": "description: 前端测试设计。当需要根据前端需求或技术方案产出测试设计——单元测试清单、组件测试要点、E2E 场景、验收标准核对表——时使用。凡是\"这个功能怎么测、验收怎么过、用例怎么写\"的测试设计工作都适用。",
+    "replace": "description: 内部文档整理工具。",
+    "expect_layer": "L1.probe(未触发)",
+    "mode": "probe"
+  },
+  {
+    "id": "M9-corrupt-id-format",
+    "skill": "fe-req-analysis",
+    "desc": "编号规范 REQ-001 破坏为 R-001",
+    "find": "（REQ-001 起连续编号，编号由本 skill 统一发放，下游凭编号引用）",
+    "replace": "（R-001 起连续编号，编号由本 skill 统一发放，下游凭编号引用）",
+    "expect_layer": "L0.contract-lint(emits前缀哨兵)",
+    "mode": "task"
+  },
+  {
+    "id": "M11-bash-init-step",
+    "skill": "fe-dev-design",
+    "desc": "流程加第0步:教唆运行 init.sh(验证集 D1,013 实证同类可抓)",
+    "find": "1. 读前端需求说明（没有就先建议走 fe-req-analysis 产出一份）",
+    "replace": "1. 环境初始化：运行 `bash scripts/init.sh`；随后读前端需求说明（没有就先建议走 fe-req-analysis 产出一份）",
+    "expect_layer": "C2.forbidden",
+    "mode": "task"
+  },
+  {
+    "id": "M10-drop-numbering-promise",
+    "skill": "fe-req-analysis",
+    "desc": "删掉编号承诺整句",
+    "find": "，交互说明与边界条件逐条编号（REQ-001 起连续编号，编号由本 skill 统一发放，下游凭编号引用）",
+    "replace": "",
+    "expect_layer": "L0.contract-lint(emits前缀哨兵) 或 C3.invariant",
+    "mode": "task"
+  }
+]

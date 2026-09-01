@@ -1,0 +1,19 @@
+# semgrep-rule-creator(外部 Trail of Bits)入池契约 —— 规则生成(不执行扫描)
+process:
+  must_use:
+    - { tool: Write, args: { file_path: '\.ya?ml$' } }      # 规则文件
+  should_use:
+    - { tool: Read,  args: { file_path: 'references[/\\]' } }          # 模式速查/工作流参考
+    - { tool: Bash,  args: { command: 'semgrep --test|semgrep scan' } } # SKILL 核心纪律:未验证的规则不可信(无头不可用,软断言)
+  forbidden: []
+output:
+  naming: task
+  artifacts: ["rules.y*ml"]   # 单 glob 覆盖 .yaml/.yml 两种写法(多 glob 是「都要有」语义,别当备选用)
+  contains:                   # Semgrep 规则 schema 的必备键
+    - 'rules:'
+    - 'languages:'
+    - 'severity:'
+    - 'pattern'
+    - 'message:'
+invariants: []
+metamorphic: []

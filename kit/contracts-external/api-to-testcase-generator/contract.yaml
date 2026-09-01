@@ -1,0 +1,17 @@
+# api-to-testcase-generator(外部 TestMu AI)入池契约 —— API 规约转测试套件
+process:
+  must_use:
+    - { tool: Read,  args: { file_path: 'openapi' } }             # 读 API 规约
+    - { tool: Write, args: { file_path: 'api[_-]?tests[^/\\]*\.py$' } }
+  ordered: [[Read, Write]]
+  forbidden: [Bash]
+output:
+  naming: task
+  artifacts: ["api_tests.py"]
+  contains:
+    - 'def test_'          # pytest 测试函数
+    - 'status_code'        # 断言响应码
+    - 'assert '
+    - 'requests\.|httpx\.|pytest\.'
+invariants: []
+metamorphic: []

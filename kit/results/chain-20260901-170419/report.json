@@ -1,0 +1,949 @@
+{
+  "ts": "20260901-170419",
+  "stages": [
+    {
+      "skill": "fe-req-analysis",
+      "duration_s": 130.7,
+      "usage": {
+        "input_tokens": 29544,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 67520,
+        "output_tokens": 9573,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "PASS",
+        "reason": "过程断言全过",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 3,
+        "tools": [
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 0,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Read file_path=/(?i)prd|需求|用户故事|原型/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "must_use",
+            "target": "Write file_path=/fe-req-[^/\\\\]+\\.md$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "ordered",
+            "target": "Read -> Write",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Edit,Bash",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "FAIL",
+        "n_fail": 1,
+        "n_warn": 0,
+        "artifacts": [
+          "fe-req-login.md"
+        ],
+        "findings": [
+          {
+            "check": "sections",
+            "target": "fe-req-login.md",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "invariant",
+            "target": "fe-req-login.md:req-items-numbered",
+            "verdict": "FAIL",
+            "detail": "10 个用例单元未挂编号: ['L24:| B1 | 页签切换区 | 「账号密码」「手机验证码」两个页签 | 独立切换组', 'L25:| B2 | 账号密码表单区 | 账号输入项、密码输入项（各含 label + ', 'L26:| B3 | 手机验证码表单区 | 手机号输入项、验证码输入项（输入框 + 内联', 'L28:| B5 | 登录提交按钮 | 主按钮，含默认 / loading / 禁用三态', 'L29:| B6 | 表单级提示区 | 服务端错误、网络错误、账号锁定（含剩余时间）等提', 'L48:点击后先校验手机号格式（沿用 PRD 第 8 条\"格式不对不发请求\"的精神）；不']"
+          }
+        ]
+      },
+      "artifacts": [
+        "fe-req-login.md"
+      ],
+      "ws": "D:\\work\\个人工作总结\\skilltest-v2\\kit\\results\\chain-20260901-170419\\stage-1\\ws",
+      "exit": 0
+    },
+    {
+      "skill": "fe-dev-design",
+      "duration_s": 161.5,
+      "usage": {
+        "input_tokens": 31391,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 95040,
+        "output_tokens": 9440,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "PASS",
+        "reason": "过程断言全过",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 5,
+        "tools": [
+          "Glob",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 0,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Read file_path=/(?i)fe-req|需求/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "must_use",
+            "target": "Write file_path=/fe-dev-[^/\\\\]+\\.md$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "should_use",
+            "target": "Read file_path=/package\\.json/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "ordered",
+            "target": "Read -> Write",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Edit,Bash",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "fe-dev-login.md"
+        ],
+        "findings": [
+          {
+            "check": "sections",
+            "target": "fe-dev-login.md",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "artifacts": [
+        "fe-dev-login.md"
+      ],
+      "ws": "D:\\work\\个人工作总结\\skilltest-v2\\kit\\results\\chain-20260901-170419\\stage-2\\ws",
+      "exit": 0
+    },
+    {
+      "skill": "fe-test-design",
+      "duration_s": 210.3,
+      "usage": {
+        "input_tokens": 22548,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 91136,
+        "output_tokens": 13838,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "PASS",
+        "reason": "过程断言全过",
+        "skill_invoked": true,
+        "evidence_incomplete": false,
+        "n_tool_calls": 4,
+        "tools": [
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 0,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Read file_path=/(?i)fe-req|fe-dev|需求|方案/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "must_use",
+            "target": "Write file_path=/fe-test-[^/\\\\]+\\.md$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "ordered",
+            "target": "Read -> Write",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Edit,Bash",
+            "verdict": "PASS",
+            "detail": ""
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "FAIL",
+        "n_fail": 1,
+        "n_warn": 0,
+        "artifacts": [
+          "fe-test-login.md"
+        ],
+        "findings": [
+          {
+            "check": "sections",
+            "target": "fe-test-login.md",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "invariant",
+            "target": "fe-test-login.md:case-has-req",
+            "verdict": "FAIL",
+            "detail": "30 个用例单元未挂编号: ['L131:修正后再次失焦或输入：错误文案消失，校验态恢复。', 'L156:`formAlert=null`：不渲染任何提示。', 'L162:倒计时每秒递减、文案随时间更新；不足 1 分钟时按秒展示。', 'L168:已登录：正常渲染 `<Outlet/>` 子路由。', 'L204:| 001 | 默认「账号密码」页签 | CT-01-1、E2E-01 | 默认', 'L205:| 002 | 页签切换、B4/B5 共用 | CT-01-2/3、CT-02、']"
+          }
+        ]
+      },
+      "artifacts": [
+        "fe-test-login.md"
+      ],
+      "ws": "D:\\work\\个人工作总结\\skilltest-v2\\kit\\results\\chain-20260901-170419\\stage-3\\ws",
+      "exit": 0
+    }
+  ],
+  "links": {
+    "req->test": {
+      "layer": "chain",
+      "link": "req->test",
+      "verdict": "FAIL",
+      "reason": "漏覆盖 4 个: ['REQ-004', 'REQ-005', 'REQ-006', 'REQ-026']",
+      "id_pattern": "REQ-\\d+",
+      "rules": [
+        "every_upstream_id_covered_ge_1",
+        "no_phantom_ids"
+      ],
+      "upstream_ids": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023",
+        "REQ-024",
+        "REQ-025",
+        "REQ-026"
+      ],
+      "downstream_refs": {
+        "REQ-001": 4,
+        "REQ-002": 3,
+        "REQ-003": 3,
+        "REQ-007": 5,
+        "REQ-008": 3,
+        "REQ-009": 1,
+        "REQ-010": 3,
+        "REQ-011": 3,
+        "REQ-012": 4,
+        "REQ-013": 3,
+        "REQ-014": 2,
+        "REQ-015": 5,
+        "REQ-016": 5,
+        "REQ-017": 2,
+        "REQ-018": 1,
+        "REQ-019": 2,
+        "REQ-020": 4,
+        "REQ-021": 1,
+        "REQ-022": 2,
+        "REQ-023": 2,
+        "REQ-024": 3,
+        "REQ-025": 2
+      },
+      "matrix": [
+        {
+          "id": "REQ-001",
+          "upstream": true,
+          "refs": 4,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-002",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-003",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-004",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-005",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-006",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-007",
+          "upstream": true,
+          "refs": 5,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-008",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-009",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-010",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-011",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-012",
+          "upstream": true,
+          "refs": 4,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-013",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-014",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-015",
+          "upstream": true,
+          "refs": 5,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-016",
+          "upstream": true,
+          "refs": 5,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-017",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-018",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-019",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-020",
+          "upstream": true,
+          "refs": 4,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-021",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-022",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-023",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-024",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-025",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-026",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        }
+      ],
+      "coverage_pct": 84.6
+    },
+    "req->dev": {
+      "layer": "chain",
+      "link": "req->dev",
+      "verdict": "PASS",
+      "reason": "链路追溯通过: 24/26 覆盖, 0 幻觉",
+      "id_pattern": "REQ-\\d+",
+      "rules": [
+        "no_phantom_ids"
+      ],
+      "upstream_ids": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023",
+        "REQ-024",
+        "REQ-025",
+        "REQ-026"
+      ],
+      "downstream_refs": {
+        "REQ-001": 2,
+        "REQ-002": 1,
+        "REQ-003": 3,
+        "REQ-004": 1,
+        "REQ-005": 1,
+        "REQ-006": 1,
+        "REQ-007": 2,
+        "REQ-008": 1,
+        "REQ-009": 2,
+        "REQ-010": 2,
+        "REQ-011": 2,
+        "REQ-012": 5,
+        "REQ-013": 2,
+        "REQ-014": 3,
+        "REQ-016": 4,
+        "REQ-017": 2,
+        "REQ-019": 1,
+        "REQ-020": 2,
+        "REQ-021": 2,
+        "REQ-022": 3,
+        "REQ-023": 1,
+        "REQ-024": 3,
+        "REQ-025": 3,
+        "REQ-026": 1
+      },
+      "matrix": [
+        {
+          "id": "REQ-001",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-002",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-003",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-004",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-005",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-006",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-007",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-008",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-009",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-010",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-011",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-012",
+          "upstream": true,
+          "refs": 5,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-013",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-014",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-015",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-016",
+          "upstream": true,
+          "refs": 4,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-017",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-018",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-019",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-020",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-021",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-022",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-023",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-024",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-025",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-026",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        }
+      ],
+      "coverage_pct": 92.3
+    },
+    "negative": {
+      "layer": "chain",
+      "link": "req->test(负向)",
+      "verdict": "FAIL",
+      "reason": "漏覆盖 4 个: ['REQ-004', 'REQ-005', 'REQ-006', 'REQ-026']",
+      "id_pattern": "REQ-\\d+",
+      "rules": [
+        "every_upstream_id_covered_ge_1",
+        "no_phantom_ids"
+      ],
+      "upstream_ids": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "REQ-012",
+        "REQ-013",
+        "REQ-014",
+        "REQ-015",
+        "REQ-016",
+        "REQ-017",
+        "REQ-018",
+        "REQ-019",
+        "REQ-020",
+        "REQ-021",
+        "REQ-022",
+        "REQ-023",
+        "REQ-024",
+        "REQ-025",
+        "REQ-026"
+      ],
+      "downstream_refs": {
+        "REQ-001": 4,
+        "REQ-002": 3,
+        "REQ-003": 3,
+        "REQ-007": 5,
+        "REQ-008": 3,
+        "REQ-009": 1,
+        "REQ-010": 3,
+        "REQ-011": 3,
+        "REQ-012": 4,
+        "REQ-013": 3,
+        "REQ-014": 2,
+        "REQ-015": 5,
+        "REQ-016": 5,
+        "REQ-017": 2,
+        "REQ-018": 1,
+        "REQ-019": 2,
+        "REQ-020": 4,
+        "REQ-021": 1,
+        "REQ-022": 2,
+        "REQ-023": 2,
+        "REQ-024": 3,
+        "REQ-025": 2
+      },
+      "matrix": [
+        {
+          "id": "REQ-001",
+          "upstream": true,
+          "refs": 4,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-002",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-003",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-004",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-005",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-006",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        },
+        {
+          "id": "REQ-007",
+          "upstream": true,
+          "refs": 5,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-008",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-009",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-010",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-011",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-012",
+          "upstream": true,
+          "refs": 4,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-013",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-014",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-015",
+          "upstream": true,
+          "refs": 5,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-016",
+          "upstream": true,
+          "refs": 5,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-017",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-018",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-019",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-020",
+          "upstream": true,
+          "refs": 4,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-021",
+          "upstream": true,
+          "refs": 1,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-022",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-023",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-024",
+          "upstream": true,
+          "refs": 3,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-025",
+          "upstream": true,
+          "refs": 2,
+          "status": "covered"
+        },
+        {
+          "id": "REQ-026",
+          "upstream": true,
+          "refs": 0,
+          "status": "UNCOVERED"
+        }
+      ],
+      "coverage_pct": 84.6
+    }
+  },
+  "model": null
+}

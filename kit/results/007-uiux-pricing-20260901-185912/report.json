@@ -1,0 +1,94 @@
+{
+  "task": "007-uiux-pricing",
+  "skill": "ui-ux-pro-max",
+  "runs": [
+    {
+      "run": 1,
+      "duration_s": 419.9,
+      "exit": 1,
+      "usage": {
+        "input_tokens": 87010,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 989248,
+        "output_tokens": 35096,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "c2": {
+        "layer": "C2",
+        "verdict": "UNKNOWN",
+        "reason": "会话被 max-turns 截断(result.subtype=error_max_turns),证据不完整",
+        "skill_invoked": true,
+        "evidence_incomplete": true,
+        "n_tool_calls": 28,
+        "tools": [
+          "Bash",
+          "Edit",
+          "Glob",
+          "Grep",
+          "Read",
+          "Skill",
+          "Write"
+        ],
+        "n_fail": 1,
+        "n_warn": 0,
+        "findings": [
+          {
+            "check": "must_use",
+            "target": "Write file_path=/\\.html$/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "should_use",
+            "target": "Read file_path=/data[/\\\\]/",
+            "verdict": "PASS",
+            "detail": ""
+          },
+          {
+            "check": "forbidden",
+            "target": "Bash",
+            "verdict": "FAIL",
+            "detail": "违规调用: ['Bash', 'Bash', 'Bash', 'Bash', 'Bash', 'Bash', 'Bash', 'Bash']"
+          }
+        ]
+      },
+      "c3": {
+        "layer": "C3-props",
+        "verdict": "PASS",
+        "n_fail": 0,
+        "n_warn": 0,
+        "artifacts": [
+          "pricing.html"
+        ],
+        "findings": [
+          {
+            "check": "contains",
+            "target": "class=\"[^\"]*(bg|text|flex|grid|rounded)-",
+            "verdict": "PASS",
+            "detail": "命中: ['pricing.html']"
+          },
+          {
+            "check": "contains",
+            "target": "定价|价格|Pricing|pricing|¥|\\$[0-9]",
+            "verdict": "PASS",
+            "detail": "命中: ['pricing.html']"
+          }
+        ]
+      },
+      "verdict": "UNKNOWN"
+    }
+  ],
+  "model": null,
+  "ts": "20260901-185912"
+}
