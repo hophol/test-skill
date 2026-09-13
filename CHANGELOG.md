@@ -256,6 +256,18 @@
 
 ---
 
+
+### CC19 · 2026-09-13 · 推送公开分支（`agent-skill-eval` → hophol/test-skill）
+
+- **改了什么**：无代码改动；把净化后的公开版推上 GitHub 分支 `agent-skill-eval`（提交 `72fe4d2`，229 文件）。
+- **净化范围**（公开版不含内部样本）：删除 4 个用例（`fe-req-analysis` / `fe-dev-design` / `fe-dev-chain` / `fe-test-design`）及 4 个夹具；README/SPEC/CHANGELOG 中内部样本细节已泛化并注明"仅私有版本包含"；净化后 `cc-eval oracle` 5/5 通过。
+- **网络结论（这台机器）**：`github.com:443` HTTPS 间歇性阻断（换 4 个入口 IP、钉 hosts 均无效：TCP/TLS 时通时断）；**`ssh.github.com:443`（SSH over 443）稳定可用** → 远端改为 `ssh://git@ssh.github.com:443/hophol/test-skill.git`，新增 ed25519 密钥完成认证。
+- **证据**：`ssh -T` 返回 "Hi hophol!"；`git push -u origin agent-skill-eval` → `4975459..72fe4d2`；`git ls-remote` 远端 sha === 本地 HEAD（`72fe4d2feb2b…`）——sha 一致即内容一致，fe-* 未上公开仓。
+- **影响文件**：无（本地 `D:\Games\robot\agent-skill-eval` 的完整版未动，待推私有仓库）。
+- **回退**：`git push origin --delete agent-skill-eval`。
+
+---
+
 ## 下一批计划（执行后逐条补记录）
 
 | 计划 | 触发条件 | 预期证据 | 预估成本 |
