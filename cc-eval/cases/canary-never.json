@@ -1,0 +1,17 @@
+{
+  "id": "canary-never",
+  "canary": true,
+  "workspace": "fixtures/empty/workspace",
+  "arms": [
+    "with_skill"
+  ],
+  "timeout_ms": 180000,
+  "turns": [
+    {
+      "user": "你好",
+      "assert": {
+        "must_write_file": "CANARY-NEVER-EXISTS.md"
+      }
+    }
+  ]
+}

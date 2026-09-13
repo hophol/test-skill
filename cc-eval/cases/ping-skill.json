@@ -1,0 +1,17 @@
+{
+  "id": "ping-skill",
+  "workspace": "fixtures/ping/workspace",
+  "artifacts": [],
+  "timeout_ms": 240000,
+  "turns": [
+    {
+      "user": "帮我做一次 ping 检查",
+      "assert": {
+        "must_call_skill": "ping-check",
+        "must_contain": [
+          "PONG-SKILL-OK"
+        ]
+      }
+    }
+  ]
+}

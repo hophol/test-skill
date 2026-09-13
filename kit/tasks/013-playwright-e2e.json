@@ -1,6 +1,0 @@
-{
-  "id": "013-playwright-e2e",
-  "skill": "playwright-skill",
-  "prompt": "请为登录页写 Playwright E2E 测试 login.e2e.spec.ts（TypeScript）。页面行为：/login 有「账号密码」「手机验证码」两个页签（默认前者）；账号密码表单校验失败输入框下方红字且不发请求；登录成功跳来源页；密码连错 5 次锁定并显示剩余时间。要求用基于 role/label 的定位器与 web-first 断言，禁用 waitForTimeout。只生成这一个测试文件，不要脚手架、不要安装、不要执行。",
-  "setup": { "copy": [] }
-}

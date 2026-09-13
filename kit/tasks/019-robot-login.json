@@ -1,6 +1,0 @@
-{
-  "id": "019-robot-login",
-  "skill": "robot-framework-skill",
-  "prompt": "请用 Robot Framework 写登录流程测试 login.robot：Settings 引入 SeleniumLibrary，Test Cases 覆盖成功登录跳来源页、账号密码格式错误红字提示不发请求、密码连错 5 次锁定显示剩余时间，关键词抽到 Keywords 段复用。只生成这一个文件，不安装、不执行。",
-  "setup": { "copy": [] }
-}

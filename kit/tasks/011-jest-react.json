@@ -1,8 +1,0 @@
-{
-  "id": "011-jest-react",
-  "skill": "jest-skill",
-  "prompt": "请为 Button.jsx 写 Jest + React Testing Library 测试 Button.test.jsx：覆盖三种 variant 渲染；disabled 与 loading 两种状态都既不触发 onClick、也要断言带有 btn-disabled 样式类；loading 显示「处理中…」。只生成测试文件，不安装依赖、不执行。",
-  "setup": {
-    "copy": [["tasks/fixtures/Button.jsx", "."]]
-  }
-}

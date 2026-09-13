@@ -1,8 +1,0 @@
-{
-  "id": "010-cucumber-bdd",
-  "skill": "cucumber-skill",
-  "prompt": "请把 fe-req-login.md 里的交互说明与边界条件（REQ-001~REQ-009）转成 Cucumber BDD：login.feature（Gherkin，主流程 + 边界场景，每条 Scenario 以注释标 REQ 编号）和 steps.js（JavaScript step definitions，绑定 Given/When/Then）。只生成这两个文件。",
-  "setup": {
-    "copy": [["tasks/fixtures/fe-req-login.md", "."]]
-  }
-}

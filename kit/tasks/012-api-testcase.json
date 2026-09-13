@@ -1,8 +1,0 @@
-{
-  "id": "012-api-testcase",
-  "skill": "api-to-testcase-generator",
-  "prompt": "请根据 openapi.yaml 为 Meridian Todo API 生成 pytest 测试套件 api_tests.py：覆盖 GET/POST/PATCH 的 happy path、参数边界（limit 1/100/101、title 120 字上限）、错误码（400/404/409/422）。只生成测试文件，不安装依赖、不执行。",
-  "setup": {
-    "copy": [["tasks/fixtures/openapi.yaml", "."]]
-  }
-}

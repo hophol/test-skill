@@ -1,0 +1,17 @@
+{
+  "id": "frontend-design",
+  "workspace": "fixtures/frontend-design/workspace",
+  "timeout_ms": 300000,
+  "turns": [
+    {
+      "user": "我要给一个独立咖啡品牌做官网，页面要有辨识度、别太模板化，帮我定设计方向：配色和字体怎么选",
+      "assert": {
+        "must_call_skill": "frontend-design",
+        "must_contain": [
+          "配色",
+          "字体"
+        ]
+      }
+    }
+  ]
+}

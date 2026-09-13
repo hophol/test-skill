@@ -1,0 +1,10 @@
+{
+  "name": "cc-eval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Evaluate Agent Skill execution inside Claude Code: two arms, scripted multi-turn, process + artifact assertions.",
+  "bin": {
+    "cc-eval": "./cc-eval.mjs"
+  }
+}

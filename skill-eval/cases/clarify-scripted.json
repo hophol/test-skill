@@ -1,0 +1,56 @@
+{
+  "id": "clarify-scripted",
+  "workspace": "fixtures/clarify/workspace",
+  "user_questions": "scripted",
+  "slots": {
+    "platform": {
+      "keywords": [
+        "平台",
+        "platform",
+        "部署",
+        "上线到",
+        "环境"
+      ],
+      "answer": "阿里云 ECS",
+      "option": "阿里云 ECS"
+    },
+    "deadline": {
+      "keywords": [
+        "截止",
+        "deadline",
+        "期限",
+        "什么时候",
+        "哪一天",
+        "时间"
+      ],
+      "answer": "下周五"
+    }
+  },
+  "limits": {
+    "max_turns": 4,
+    "per_turn_timeout_ms": 180000
+  },
+  "turns": [
+    {
+      "user": "帮我把 demo-app 发布上线",
+      "assert": {
+        "must_ask_user": true
+      }
+    },
+    {
+      "user": "好的，就按你确认的信息继续",
+      "assert": {
+        "must_write_file": "plan.md",
+        "must_contain": [
+          "阿里云 ECS"
+        ]
+      }
+    }
+  ],
+  "artifacts": [
+    "plan.md"
+  ],
+  "oracle": {
+    "plan.md": "platform: 阿里云 ECS\ndeadline: 下周五\n"
+  }
+}

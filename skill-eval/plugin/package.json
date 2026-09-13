@@ -1,0 +1,9 @@
+{
+  "name": "@games-robot/dsh-skill-eval-runner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "exports": { ".": "./index.mjs" },
+  "description": "DSH multi-turn skill-eval runner plugin: drives scripted user turns over one agent and asserts per-turn behaviour."
+}

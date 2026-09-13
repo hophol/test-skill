@@ -1,6 +1,0 @@
-{
-  "id": "005-angular-counter",
-  "skill": "angular-developer",
-  "prompt": "请生成一个 Angular standalone 组件文件 counter.component.ts：计数器，用信号(signal)管理计数状态，模板含增加/减少/重置按钮。不要创建项目、不要安装依赖、不要执行构建，只输出这一个组件文件（含内联模板）。",
-  "setup": { "copy": [] }
-}

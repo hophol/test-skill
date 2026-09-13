@@ -1,0 +1,23 @@
+{
+  "id": "webart",
+  "workspace": "fixtures/webart/workspace",
+  "artifact_patterns": [
+    "**/index.html"
+  ],
+  "dangerously_skip_permissions": true,
+  "timeout_ms": 1200000,
+  "repeats": 1,
+  "turns": [
+    {
+      "user": "帮我做一个 claude.ai artifact：多标签页的记账工具，有状态管理，用 React 和 shadcn/ui 组件，打包成单 HTML",
+      "assert": {
+        "must_call_skill": "web-artifacts-builder",
+        "must_write_file_pattern": "**/index.html"
+      }
+    }
+  ],
+  "oracle": {
+    "artifact/index.html": "<!doctype html>\n<html><head><meta charset=\"utf-8\"><title>ledger</title></head><body><div id=\"root\"></div><script src=\"app.js\"></script></body></html>\n"
+  },
+  "slow": true
+}

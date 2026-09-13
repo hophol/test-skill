@@ -1,0 +1,21 @@
+{
+  "id": "canary-never",
+  "canary": true,
+  "workspace": "fixtures/clarify/workspace",
+  "user_questions": "unavailable",
+  "limits": {
+    "max_turns": 2,
+    "per_turn_timeout_ms": 120000
+  },
+  "turns": [
+    {
+      "user": "你好",
+      "assert": {
+        "must_write_file": "CANARY-NEVER-EXISTS.md"
+      }
+    }
+  ],
+  "arms": [
+    "with_skill"
+  ]
+}

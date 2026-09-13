@@ -1,0 +1,6 @@
+# web-artifacts-builder 探针(入池时平台代写)
+positive:
+  - "帮我做一个 claude.ai artifact:多标签页的记账工具,有状态管理,用 React 和 shadcn/ui 组件,打包成单 HTML"
+  - "我要在 claude.ai 里做一个交互式看板 artifact,任务能拖拽换列,用现代前端技术栈最后打包成一个文件"
+  - "用 React + Tailwind 做一个多页面的 artifact(首页/详情/设置),要路由和状态管理,最后 bundle 成单个 HTML"
+negative: []

@@ -1,8 +1,0 @@
-{
-  "id": "004-algo-art",
-  "skill": "algorithmic-art",
-  "prompt": "请创作一件 p5.js 生成艺术，主题自定：先完成算法哲学文档（一个 .md 文件），再参照技能 templates/ 目录下的 generator_template.js 与 viewer.html，产出一个可直接在浏览器打开的交互 viewer（一个 .html）和生成算法脚本（一个 .js），种子随机保证可复现。三种文件各一个，放在当前目录。",
-  "setup": {
-    "copy": []
-  }
-}

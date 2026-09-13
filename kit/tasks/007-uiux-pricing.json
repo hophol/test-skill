@@ -1,6 +1,0 @@
-{
-  "id": "007-uiux-pricing",
-  "skill": "ui-ux-pro-max",
-  "prompt": "请为「Meridian 数据平台」（面向开发者的 BI 工具，三档定价：免费版/团队版 ¥199/月/企业版按席位）设计定价页，技术栈 HTML + Tailwind（CDN 引入），输出 pricing.html 单文件。技能 scripts/ 下的脚本在当前环境不可用，请直接读取技能 data/ 目录中的设计数据（styles/typography/landing 等）作为设计依据。",
-  "setup": { "copy": [] }
-}

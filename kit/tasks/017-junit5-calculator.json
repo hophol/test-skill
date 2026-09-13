@@ -1,6 +1,0 @@
-{
-  "id": "017-junit5-calculator",
-  "skill": "junit-5-skill",
-  "prompt": "请为 Calculator.java 写 JUnit 5 测试 CalculatorTest.java：覆盖 add、divide 除零异常（assertThrows）、factorial 边界（0、负数 IllegalArgumentException、20 溢出前最大值）、isPalindrome（null 异常、空串、奇偶长度）。用 JUnit 5 的 Assertions 与显示名。只生成测试文件，不安装、不执行。",
-  "setup": { "copy": [["tasks/fixtures/Calculator.java", "."]] }
-}

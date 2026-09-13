@@ -1,0 +1,19 @@
+# skill-eval overlay: replace the shipped one-shot headless runner with the
+# multi-turn eval runner.
+#   dsh --profile skilleval --patch <this file>
+# Entries are configured by id; NEW entries must go inside an "insert:" list.
+
+- id: headless-runner
+  disabled: true
+
+- id: headless-startup
+  disabled: true
+
+- insert:
+    - id: skill-eval-runner
+      name: 'file:///D:/Games/robot/skill-eval/plugin/index.mjs'
+      config:
+        case: !!js process.env.DSH_EVAL_CASE
+        workspace: !!js process.env.DSH_EVAL_WORKSPACE
+        out: !!js process.env.DSH_EVAL_OUT
+        user_questions: !!js process.env.DSH_EVAL_UQ

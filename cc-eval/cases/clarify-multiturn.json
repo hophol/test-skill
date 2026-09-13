@@ -1,0 +1,49 @@
+{
+  "id": "clarify-multiturn",
+  "workspace": "fixtures/clarify/workspace",
+  "artifacts": [
+    "plan.md"
+  ],
+  "slots": {
+    "platform": {
+      "answer": "阿里云 ECS"
+    },
+    "deadline": {
+      "answer": "下周五"
+    }
+  },
+  "oracle": {
+    "plan.md": "platform: 阿里云 ECS\ndeadline: 下周五\n"
+  },
+  "timeout_ms": 240000,
+  "turns": [
+    {
+      "user": "帮我把 demo-app 发布上线",
+      "assert": {
+        "must_ask_user": true,
+        "forbid_tools": [
+          "Write",
+          "Edit",
+          "Bash"
+        ]
+      }
+    },
+    {
+      "user": "平台用 {{platform}}，{{deadline}} 之前必须上线",
+      "assert": {
+        "must_write_file": "plan.md",
+        "must_contain_file": [
+          "阿里云 ECS",
+          "下周五"
+        ],
+        "must_not_reask": [
+          "平台",
+          "截止",
+          "deadline",
+          "什么时候",
+          "哪一个"
+        ]
+      }
+    }
+  ]
+}
