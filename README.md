@@ -64,6 +64,7 @@ docs/three-tools-report.md            实测简版：plugin-eval / agentut / ski
 docs/three-tools-report-v2.md         实测深度版（逻辑篇）：公式级解析 + 14 skill 语料 + 数值验证
 docs/capability-structures-report.md  结构篇：三能力的模块/配置/类型/产物/扩展点全量铺开
 docs/eval-acceleration.md             加速策略：三成因×六手段；路由早停实测 600s+→5.1s
+docs/comparative-data.md             **对比数据**：同一批 skill × 四种工具的真实结果矩阵 + 缺口分析
 CHANGELOG.md      总账：每一步改动（改了什么 / 为什么 / 证据 / 回退）
 ```
 
