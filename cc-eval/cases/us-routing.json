@@ -1,0 +1,17 @@
+{
+  "id": "us-routing",
+  "workspace": "fixtures/us-breakdown/workspace",
+  "timeout_ms": 300000,
+  "abort_when": "skill_loaded",
+  "arms": [
+    "with_skill"
+  ],
+  "turns": [
+    {
+      "user": "把 docs/us-login.md 这个用户故事拆成前端开发任务",
+      "assert": {
+        "must_call_skill": "us-breakdown"
+      }
+    }
+  ]
+}

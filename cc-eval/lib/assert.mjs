@@ -101,6 +101,35 @@ export function checkTurnAssertions(turn, spec, workspace) {
     const any = callsOf(turn).some(c => c.name === 'Skill' || c.name === 'skill')
     out.push({ id: 'must_not_call_skill', passed: !any, detail: any ? 'a skill was loaded' : 'ok' })
   }
+  if (spec.must_call_tool) {
+    // Complex skills delegate real work to their own CLIs/scripts, so "did the
+    // agent follow the workflow" is observable as specific tool invocations.
+    // Shape: string | {name, input_contains} | {name, command_contains}.
+    // command_contains searches the parsed tool arguments' string values
+    // (Bash's command field, Write's file_path, etc.) - more robust than
+    // input_contains for JSON-encoded arguments.
+    const list = Array.isArray(spec.must_call_tool) ? spec.must_call_tool : [spec.must_call_tool]
+    const missing = []
+    for (const t of list) {
+      const name = typeof t === 'string' ? t : t.name
+      const needle = typeof t === 'string' ? null : (t.input_contains || t.command_contains)
+      const hit = callsOf(turn).some(c => {
+        if (c.name !== name) return false
+        if (!needle) return true
+        const raw = String(c.input || '')
+        // The input may be a JSON-encoded tool_use argument, so search both the
+        // raw string and any string value inside the parsed arguments (Bash's
+        // command field, Write's file_path field, etc.).
+        if (raw.includes(needle)) return true
+        try {
+          const args = JSON.parse(raw)
+          return Object.values(args).some(v => typeof v === 'string' && v.includes(needle))
+        } catch { return false }
+      })
+      if (!hit) missing.push(name + (needle ? '(' + needle + ')' : ''))
+    }
+    out.push({ id: 'must_call_tool', passed: missing.length === 0, detail: missing.length ? 'not invoked: ' + missing.join(', ') : 'ok' })
+  }
   if (spec.forbid_tools) {
     const used = usedTools(turn, spec.forbid_tools)
     out.push({ id: 'forbid_tools', passed: used.length === 0, detail: used.length ? 'used ' + used.join(',') : 'clean' })

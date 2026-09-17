@@ -1,0 +1,61 @@
+{
+  "id": "us-breakdown-full",
+  "workspace": "fixtures/us-breakdown/workspace",
+  "artifact_patterns": [
+    "breakdown.json",
+    "tasks.md"
+  ],
+  "timeout_ms": 600000,
+  "turns": [
+    {
+      "user": "把 docs/us-login.md 这个用户故事拆解成前端开发任务，按 skill 的流程来",
+      "oracle": {
+        "breakdown.json": "{\"us_title\":\"手机号验证码登录\",\"acs\":[{\"id\":\"AC1\",\"text\":\"60 秒内收到验证码\"},{\"id\":\"AC2\",\"text\":\"错误提示且不清空\"},{\"id\":\"AC3\",\"text\":\"锁定 10 分钟\"}],\"tasks\":[{\"id\":\"T1\",\"ac\":\"AC1\",\"title\":\"发送验证码\",\"estimate_days\":0.5,\"test_hint\":\"收到短信\"},{\"id\":\"T2\",\"ac\":\"AC2\",\"title\":\"行内错误提示\",\"estimate_days\":0.5,\"test_hint\":\"输错显示提示\"},{\"id\":\"T3\",\"ac\":\"AC3\",\"title\":\"锁定与剩余时间 [edge]\",\"estimate_days\":1,\"test_hint\":\"5 次失败后锁定\"}]}",
+        "tasks.md": "# 任务清单：手机号验证码登录\n\n| 任务 | AC | 估点(天) | 验证提示 |\n|---|---|---|---|\n| T1 发送验证码 | AC1 | 0.5 | 收到短信 |\n"
+      },
+      "assert": {
+        "must_call_skill": "us-breakdown",
+        "must_call_tool": [
+          {
+            "name": "Bash",
+            "command_contains": "us_parser.mjs"
+          },
+          {
+            "name": "Bash",
+            "command_contains": "validate_breakdown.mjs"
+          }
+        ],
+        "must_write_file_pattern": "breakdown.json",
+        "must_contain_file": [
+          "AC1",
+          "AC2",
+          "AC3",
+          "estimate_days",
+          "test_hint"
+        ]
+      }
+    },
+    {
+      "user": "PM 补了一条验收标准：AC4 验证码 5 分钟内有效，过期后点击登录应当提示重新获取。重新拆解并更新两个产物",
+      "oracle": {
+        "breakdown.json": "{\"us_title\":\"手机号验证码登录\",\"acs\":[{\"id\":\"AC1\",\"text\":\"60 秒内收到验证码\"},{\"id\":\"AC2\",\"text\":\"错误提示且不清空\"},{\"id\":\"AC3\",\"text\":\"锁定 10 分钟\"},{\"id\":\"AC4\",\"text\":\"验证码 5 分钟内有效\"}],\"tasks\":[{\"id\":\"T1\",\"ac\":\"AC1\",\"title\":\"发送验证码\",\"estimate_days\":0.5,\"test_hint\":\"收到短信\"},{\"id\":\"T2\",\"ac\":\"AC2\",\"title\":\"行内错误提示\",\"estimate_days\":0.5,\"test_hint\":\"输错显示提示\"},{\"id\":\"T3\",\"ac\":\"AC3\",\"title\":\"锁定与剩余时间 [edge]\",\"estimate_days\":1,\"test_hint\":\"5 次失败后锁定\"},{\"id\":\"T4\",\"ac\":\"AC4\",\"title\":\"过期提示重新获取 [edge]\",\"estimate_days\":0.5,\"test_hint\":\"过期后提示\"}]}"
+      },
+      "assert": {
+        "must_call_tool": [
+          {
+            "name": "Bash",
+            "command_contains": "validate_breakdown.mjs"
+          }
+        ],
+        "must_write_file_pattern": "breakdown.json",
+        "must_contain_file": [
+          "AC4"
+        ]
+      }
+    }
+  ],
+  "assert": {
+    "must_call_skill_any_turn": "us-breakdown"
+  },
+  "dangerously_skip_permissions": true
+}

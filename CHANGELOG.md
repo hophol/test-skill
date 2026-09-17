@@ -316,6 +316,29 @@
 - **影响文件**：cc-eval/cc-eval.mjs、cases/webart-routing.json、cases/INDEX.txt、docs/eval-acceleration.md。
 ---
 
+
+### CC21 · 2026-09-16 · 复杂 skill 实测：us-breakdown（US拆解，含 CLI + 验证环 + 多轮修订）
+
+- **背景**：此前全是简单 skill，没有测过一个"参与开发全流程、带 CLI 工具和验证环"的复杂能力。
+- **构造的被测物**：`us-breakdown` skill——SKILL.md（工作流指令）+ **2 个真 CLI**（`us_parser.mjs`：US markdown→结构化 JSON；`validate_breakdown.mjs`：校验 AC↔任务覆盖/估点/测试提示，exit 0/1）+ 2 个 references（拆解规则、估点规则）。冒烟时抓到 2 个脚本 bug（解析器漏 AC、校验器没剥 BOM）——**先修好了才让 agent 用**。
+- **harness 因复杂 skill 暴露的缺口与新增能力**：
+  1. **must_call_tool 断言**（新增）：`{name:"Bash", command_contains:"us_parser.mjs"}`——验证 agent 是否真的执行了 skill 内嵌的 CLI（而非手工推演）。`command_contains` 搜解析后的参数字符串值（Bash 的 command 字段等），比 `input_contains` 更健壮。
+  2. **真发现**：不给 `--dangerously-skip-permissions` 时，agent 的 Bash 调用被权限系统拒绝，它就**读脚本源码、手工推演结果、写出了正确产物**——CLI 从未被真正执行（没有 exit 0 的机器证据）。加上 skip-perms 后 CLI 才真的跑通。→ **只断言"产物对"会漏掉"流程合规"**。
+- **评测结果（两臂、两轮）**：
+  ```
+  T1 路由（早停 3.8s）        with_skill PASS
+  T3 全量（两臂两轮）
+    with_skill    2 轮全过（Skill→读US→跑us_parser→写产物→跑validate→第2轮PM加AC4→重拆→重跑validate）
+                  wall=160s cost=$0.48
+    without_skill 2 轮全挂（不调skill、不调CLI、不产breakdown.json）
+                  wall=241s cost=$0.59
+    lift = 1
+  ```
+- **影响文件**：`cc-eval/lib/assert.mjs`（must_call_tool + command_contains）、`cases/{us-routing,us-breakdown-full}.json`（新增）、`fixtures/us-breakdown/**`（新增：skill 本体+CLI+references+US 夹具）、`cases/INDEX.txt`。
+- **回退**：删新用例与夹具；assert.mjs 的 must_call_tool 分支向后兼容。
+
+---
+
 ## 下一批计划（执行后逐条补记录）
 
 | 计划 | 触发条件 | 预期证据 | 预估成本 |
