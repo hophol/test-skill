@@ -59,7 +59,10 @@ cc-eval/          Claude Code 引擎（主目标）
   CHANGELOG.md      实现级改动记录
 skill-eval/       DSH 引擎（同一套思想的另一个适配器；需本机安装 DSH，见 SETUP.md）
 shared/           两引擎共用的 Anthropic 兼容产物生成器
-docs/research.md  调研报告：12+ 个开源项目与官方规范的 skill 评测做法
+docs/research.md                      调研报告：12+ 个开源项目与官方规范的 skill 评测做法
+docs/three-tools-report.md            实测简版：plugin-eval / agentut / skill-up 三方上手
+docs/three-tools-report-v2.md         实测深度版（逻辑篇）：公式级解析 + 14 skill 语料 + 数值验证
+docs/capability-structures-report.md  结构篇：三能力的模块/配置/类型/产物/扩展点全量铺开
 CHANGELOG.md      总账：每一步改动（改了什么 / 为什么 / 证据 / 回退）
 ```
 

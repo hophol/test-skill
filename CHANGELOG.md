@@ -268,6 +268,45 @@
 
 ---
 
+### R6 · 2026-09-16 · 三方评测工具实测（OpenAI evaluate-skill / agentut / skill-up）
+
+- **改了什么**：无评测框架代码改动；新增实测报告 `docs/three-tools-report.md` 与三个 demo 目录（`agentut-demo/`、`skillup-demo/`，plugin-eval 为稀疏克隆 `openai-plugins/`）。
+- **做了什么**：
+  1. **定位 OpenAI evaluate-skill 本体**：`openai/plugins`（skills 仓已弃用）的 `plugins/plugin-eval`——Node CLI + Codex 插件，不在 npm（private），本地 checkout 运行；官方博客 403，方法论（四段流水线 + Outcome/Process/Style/Efficiency 四分类）经第三方实测博客还原。
+  2. **三工具全部真跑**：plugin-eval analyze（ping-check=100/A/96 tokens；frontend-design=**67/D/2131 tokens 超预算**）；agentut+opencode+DeepSeek（2 场景 2 passed，7.2s）；skill-up+claude_code（1 case PASS，13s，产物含 Anthropic 兼容 grading.json 与三态 result.json）。
+  3. **环境打通**：git 走 SSH over 443；Go 从阿里云镜像 + goproxy.cn；opencode 配 DeepSeek provider（复用 DSH 凭证 key）。
+- **结论（研究方向的输入）**：预算三段拆解（trigger/invoke/deferred）并入 L0；提示集四分类（显式/隐式/上下文/负向）；双 grader；agentut 式用例蒸馏；skill-up 可当第二意见 runner。详见报告 §5。
+- **影响文件**：`docs/three-tools-report.md`（新增）、demo 目录（工作区，不入库）。
+- **回退**：删除报告与 demo 目录。
+
+---
+
+### R7 · 2026-09-16 · 深度报告 v2：14 skill 语料批量 + 三工具源码级解析
+
+- **改了什么**：新增 `docs/three-tools-report-v2.md`（取代 v1 为正式版，v1 保留为简版）。
+- **做了什么**：
+  1. **语料扩到 14 个真实 skill**（anthropics×7 / 内部样本×3（名称与产物在私有版本） / DSH×2 / ours×2），plugin-eval 批量体检：分数从 100/A 拉到 54/F，anthropics 富文档 skill 因预算超标集体 C-F（**基线带 Codex 立场**的重要洞察）；
+  2. **plugin-eval 底层全解并数值验证**：token=ceil(len/4)；trigger=name+desc（policy 感知）、invoke=SKILL.md 全文、deferred=其余文本；基线=常量或本机 p50/75/90；**score=100−Σ(严重度权重×状态系数)**，三例实测回验全部吻合（67/54/58）；
+  3. **agentut 底层**：一切落在 matchValue() 五档 Matcher（equals>contains>containsOneOf>regex>oneOf，无效正则→false）；断言分=round(通过/总数×100)；runs/min_pass 三级覆盖；distiller 按 user 消息切 step；
+  4. **skill-up 底层**：Judge(Input)→Result 统一接口；expect 7 规则**短路省 token**；rule_based **failure 优先**；agent_judge 严格 JSON+重试一次+pass_threshold 0.7；多轮 SessionResumer；统一信号量并发池；
+  5. **三角对照实验**：frontend-design 同一 skill 三工具（plugin-eval 67/D 静态 / skill-up PASS 但 240s 超时需 600s / cc-eval PASS 107s lift=1）——单一视角都会误判；
+  6. **skill-up 评真实 skill 首次超时**（240s context deadline）→ 复跑 600s 通过，与 cc-eval webart 超时互相印证"执行型/富文档 skill 需要分级超时"。
+- **方向修订**：P0=静态预算审计进 L0（自建分位数基线、中文用真 tokenizer）+ 断言 DSL 升级（五档 Matcher + 加权）；P1=Judge 接口抽取、LLM 裁判、分级超时。详见报告 §6/§7。
+- **影响文件**：`docs/three-tools-report-v2.md`（新增）；demo 与语料目录为工作区产物不入库。
+- **回退**：删除该文件。
+
+---
+
+### R8 · 2026-09-16 · 结构篇调研报告（每个能力的结构全量铺开）
+
+- **改了什么**：新增 `docs/capability-structures-report.md`（v3 结构篇，与 v2 逻辑篇配套）。
+- **内容**：plugin-eval（27 文件模块树 + EvaluationResult/Check/Metric/Artifact 四构造器源码原文 + 扩展点）；agentut（模块树 + YAML 三层结构 + 45 类型中的 8 组关键类型 + MockRule）；skill-up（19 个 internal 包树 + config/schema.go 全部 35 类型逐字段含 yaml 标签 + Judge.Input/Result + EvalResult + 产物目录树）；速览 skillgrade/comet/skill-eval-harness/官方 evals.json；cc-eval 对照。
+- **三个结构级洞察**：判分输入字段集是表达力分水岭（轮级断言靠 Input 带 Transcript/Turns）；官方 evals.json 是交换格式而非表达格式；扩展点三哲学（加文件/加 union/加接口）。
+- **行动项**：Check/Metric/Artifact 三构造器进断言层；judge(Input) 接口化；Matcher 五档；用例 schema 补 capture 与 git context；components 级可追溯。
+- **影响文件**：`docs/capability-structures-report.md`（新增）。
+
+---
+
 ## 下一批计划（执行后逐条补记录）
 
 | 计划 | 触发条件 | 预期证据 | 预估成本 |
