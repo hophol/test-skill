@@ -1,0 +1,17 @@
+{
+  "id": "webart-routing",
+  "workspace": "fixtures/webart/workspace",
+  "timeout_ms": 300000,
+  "abort_when": "skill_loaded",
+  "arms": [
+    "with_skill"
+  ],
+  "turns": [
+    {
+      "user": "帮我做一个 claude.ai artifact：多标签页的记账工具，有状态管理，用 React 和 shadcn/ui 组件，打包成单 HTML",
+      "assert": {
+        "must_call_skill": "web-artifacts-builder"
+      }
+    }
+  ]
+}

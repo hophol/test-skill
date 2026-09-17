@@ -307,6 +307,15 @@
 
 ---
 
+
+### CC20 · 2026-09-16 · 路由早停（abort_when）——路由层评测 600s+ → 5.1s
+
+- **背景**：真实场景评测慢的三个成因（多轮×臂×重复、skill 要真执行、外部依赖重）；实测 webart 全量 600s 超时、skill-up 评 frontend-design 240s 超时。
+- **改了什么**：runTurn 支持 abort_when:"skill_loaded"（400ms tail 事件文件，见 Skill 调用即杀进程树）；早停不算异常终态；新用例 webart-routing；新文档 docs/eval-acceleration.md（三成因 × 六手段）。
+- **证据**：webart-routing with_skill PASS，wall=5.1s（同问题全量执行 600s 超时未完成）——约 100× 加速；oracle 门禁通过；代价是早停轮拿不到 usage。
+- **影响文件**：cc-eval/cc-eval.mjs、cases/webart-routing.json、cases/INDEX.txt、docs/eval-acceleration.md。
+---
+
 ## 下一批计划（执行后逐条补记录）
 
 | 计划 | 触发条件 | 预期证据 | 预估成本 |

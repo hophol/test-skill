@@ -119,16 +119,34 @@ function runTurn(opts) {
   return new Promise(resolve => {
     let settled = false
     let timedOut = false
+    let abortedEarly = false
     const child = spawn(opts.claudeBin || 'claude', args, {
       cwd: opts.workspace, stdio: ['ignore', outFd, errFd], windowsHide: true,
     })
     const timer = setTimeout(() => { timedOut = true; killTree(child.pid) }, opts.timeoutMs)
+    // Early abort for routing-tier cases: the assertion only cares whether the
+    // Skill tool was invoked, so tail the event file and kill the whole tree the
+    // moment a Skill tool_use block appears. Full task execution is wasted time
+    // for this question (measured: webart 600s+ -> seconds).
+    let watcher = null
+    if (opts.abortWhen === 'skill_loaded') {
+      watcher = setInterval(() => {
+        try {
+          const raw = readFileSync(outPath, 'utf8')
+          if (raw.includes('"name":"Skill"')) {
+            abortedEarly = true
+            killTree(child.pid)
+          }
+        } catch { /* file not created yet */ }
+      }, 400)
+    }
     const finish = status => {
       if (settled) return
       settled = true
       clearTimeout(timer)
+      if (watcher) clearInterval(watcher)
       closeSync(outFd); closeSync(errFd)
-      resolve({ outPath, errPath, status, timedOut, wallMs: Date.now() - started })
+      resolve({ outPath, errPath, status, timedOut, abortedEarly, wallMs: Date.now() - started })
     }
     child.on('error', () => finish(null))
     child.on('close', code => finish(code))
@@ -240,6 +258,7 @@ async function executeRun(job, flags) {
             model: flags.model || testCase.model,
             dangerouslySkipPermissions: testCase.dangerously_skip_permissions === true,
             permissionMode: testCase.permission_mode,
+            abortWhen: turnSpecs[i].abort_when || testCase.abort_when,
           })
           wallMs += r.wallMs
           if (!sessionId && existsSync(r.outPath)) {
@@ -248,6 +267,7 @@ async function executeRun(job, flags) {
           }
           const turn = normalizeTurn(r.outPath, i + 1)
           turn.timedOut = r.timedOut
+          turn.abortedEarly = r.abortedEarly
           turn.exitCode = r.status
           turn.prompt = prompt
           turn.assertions = checkTurnAssertions(turn, turnSpecs[i].assert || {}, ws)
@@ -255,10 +275,14 @@ async function executeRun(job, flags) {
           process.stdout.write('[cc-eval] ' + caseId + '/' + arm + '#' + k + ' turn ' + (i + 1) +
             ' tools=[' + turn.toolCalls.map(c => c.name).filter(n => n !== '<<tool_result>>').join(',') + '] ' +
             'assert=' + (turn.assertions.every(a => a.passed) ? 'PASS' : 'FAIL(' + turn.assertions.filter(a => !a.passed).map(a => a.id).join(',') + ')') + '\n')
-          if (r.timedOut || turn.isError || (turnSpecs[i].assert && turnSpecs[i].assert.must_stop_on_fail !== false && turn.assertions.some(a => !a.passed) && testCase.stop_on_failed_turn)) {
+          // An intentional early abort (routing tier) is a normal outcome, not an
+          // infra failure: the turn ends without a result event, so isError would
+          // otherwise mark the whole run aborted.
+          if (r.timedOut || (turn.isError && !r.abortedEarly) || (turnSpecs[i].assert && turnSpecs[i].assert.must_stop_on_fail !== false && turn.assertions.some(a => !a.passed) && testCase.stop_on_failed_turn)) {
             aborted = true
             break
           }
+          if (r.abortedEarly) break
         }
         const caseAssertions = checkCaseAssertions(turns, testCase.assert || {}, ws)
         const failed = turns.flatMap(t => t.assertions).concat(caseAssertions).filter(a => !a.passed)

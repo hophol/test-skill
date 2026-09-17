@@ -102,6 +102,7 @@ turn N : claude -p "<第 N 轮>" --resume <session_id> --output-format stream-js
   "artifact_patterns": ["**/fe-req-*.md"],  // 变量名产物的夹具卫生（glob）
   "fixture_allowlist": [".claude"],         // 边界用例：除白名单外工作区必须为空
   "slow": true,                             // 慢用例标记（执行型；timeout 已上调）
+  "abort_when": "skill_loaded",             // 路由层早停：事件流出现 Skill 调用即杀树（实测 600s+ → 5.1s）
   "assert": { "must_call_skill_any_turn": "scope-check" },  // 案例级断言（跨轮；skill 会话内只加载一次）
   "slots": { "platform": { "answer": "阿里云 ECS" } },  // {{platform}} 展开进用户轮次
   "timeout_ms": 240000,                     // 每轮超时
